@@ -33,7 +33,7 @@ void main() {
       verifyNoMoreInteractions(prefs);
     });
     test(
-        'should return a [ChacheException] when there '
+        'should throw a [ChacheException] when there '
         'is an error caching the data', () async {
       // arrange
       when(
@@ -48,10 +48,69 @@ void main() {
       final methodCall = localDataSource.cacheFirstTimer;
 
       // assert
-      expect(methodCall, throwsA(isA<ChaceException>()));
+      expect(methodCall, throwsA(isA<CacheException>()));
       verify(
         () => prefs.setBool(kFirstTimerKey, false),
       );
+      verifyNoMoreInteractions(prefs);
+    });
+  });
+
+  group('checkIfUserIsFirstTimer', () {
+    test(
+        'should call [SharedPreferences] to check if user is first timer '
+        'and return the right response from storage when data is exists',
+        () async {
+      // arrange
+      when(
+        () => prefs.getBool(
+          any(),
+        ),
+      ).thenReturn(false);
+
+      // act
+      final result = await localDataSource.checkIfUserIsFirstTimer();
+      // assert
+      expect(result, false);
+      verify(() => prefs.getBool(kFirstTimerKey));
+      verifyNoMoreInteractions(prefs);
+    });
+
+    test(
+      'should return true if there is no data in storage ',
+      () async {
+        // arrange
+        when(
+          () => prefs.getBool(any()),
+        ).thenReturn(null);
+
+        // act
+        final result = await localDataSource.checkIfUserIsFirstTimer();
+
+        // assert
+        expect(result, true);
+        verify(() => prefs.getBool(kFirstTimerKey));
+        verifyNoMoreInteractions(prefs);
+      },
+    );
+
+    test(
+        'should throw a [CacheException] when there '
+        'is an error retrieving the data', () async {
+      // arrange
+      when(
+        () => prefs.getBool(any()),
+      ).thenThrow(
+        Exception(),
+      );
+      // act
+      final methodCall = localDataSource.checkIfUserIsFirstTimer();
+
+      // assert
+      expect(methodCall, throwsA(isA<CacheException>()));
+      verify(
+        () => prefs.getBool(kFirstTimerKey),
+      ).called(1);
       verifyNoMoreInteractions(prefs);
     });
   });

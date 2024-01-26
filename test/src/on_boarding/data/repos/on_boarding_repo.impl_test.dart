@@ -55,7 +55,7 @@ void main() {
         when(
           () => localDataSource.cacheFirstTimer(),
         ).thenThrow(
-          const ChaceException(
+          const CacheException(
             message: 'Insufficient storage',
           ),
         );

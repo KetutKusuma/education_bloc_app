@@ -17,8 +17,8 @@ class ServerException extends Equatable implements Exception {
       ];
 }
 
-class ChaceException extends Equatable implements Exception {
-  const ChaceException({
+class CacheException extends Equatable implements Exception {
+  const CacheException({
     required this.message,
     this.statusCode = 500,
   });

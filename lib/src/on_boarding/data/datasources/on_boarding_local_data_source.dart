@@ -20,13 +20,16 @@ class OnBoardingLclDataSrcImpl extends OnBoardingLocalDataSource {
     try {
       await _prefs.setBool(kFirstTimerKey, false);
     } on Exception catch (e) {
-      throw ChaceException(message: e.toString());
+      throw CacheException(message: e.toString());
     }
   }
 
   @override
-  Future<bool> checkIfUserIsFirstTimer() {
-    // TODO: implement checkIfUserIsFirstTimer
-    throw UnimplementedError();
+  Future<bool> checkIfUserIsFirstTimer() async {
+    try {
+      return _prefs.getBool(kFirstTimerKey) ?? true;
+    } on Exception catch (e) {
+      throw CacheException(message: e.toString());
+    }
   }
 }

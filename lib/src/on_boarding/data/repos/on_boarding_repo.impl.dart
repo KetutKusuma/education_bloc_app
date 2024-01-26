@@ -15,7 +15,7 @@ class OnBoardingRepoImpl implements OnBoardingRepo {
     try {
       await _localDataSource.cacheFirstTimer();
       return const Right(null);
-    } on ChaceException catch (e) {
+    } on CacheException catch (e) {
       return Left(CacheFailure(message: e.message, statusCode: e.statusCode));
     }
   }

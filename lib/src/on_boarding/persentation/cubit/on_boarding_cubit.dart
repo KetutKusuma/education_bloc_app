@@ -32,6 +32,9 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
     emit(const CheckingIfUserIsFirstTimer());
     final result = await _checkIfUserIsFirstTimer();
 
+    // gunanya fold
+    // hanya untuk ambil result ini apakah left atau right
+    // nahh disini fold value l dan r nya tidak digunakan
     result.fold(
       (l) => emit(const OnBoardingStatus(isFirstTimer: true)),
       (r) => emit(OnBoardingStatus(isFirstTimer: r)),

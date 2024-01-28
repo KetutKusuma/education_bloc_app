@@ -79,4 +79,65 @@ void main() {
       },
     );
   });
+
+  group('checkIfUserIsFirstTimer', () {
+    test('should return true when user is first timer', () async {
+      when(
+        () => localDataSource.checkIfUserIsFirstTimer(),
+      ).thenAnswer(
+        (invocation) async => true,
+      );
+
+      final result = await repoImpl.checkIfUserIsFirstTimer();
+
+      expect(result, const Right<dynamic, bool>(true));
+      verify(
+        () => localDataSource.checkIfUserIsFirstTimer(),
+      ).called(1);
+      verifyNoMoreInteractions(localDataSource);
+    });
+
+    test('should return false when user is not first timer', () async {
+      when(
+        () => localDataSource.checkIfUserIsFirstTimer(),
+      ).thenAnswer(
+        (invocation) async => false,
+      );
+
+      final result = await repoImpl.checkIfUserIsFirstTimer();
+
+      expect(result, const Right<dynamic, bool>(false));
+      verify(
+        () => localDataSource.checkIfUserIsFirstTimer(),
+      ).called(1);
+      verifyNoMoreInteractions(localDataSource);
+    });
+
+    test(
+      'should return [CacheFailure] when '
+      'call to local database is unsuccessfull',
+      () async {
+        when(() => localDataSource.checkIfUserIsFirstTimer()).thenThrow(
+          const CacheException(
+            message: 'Insufficient permission',
+            statusCode: 403,
+          ),
+        );
+
+        final result = await repoImpl.checkIfUserIsFirstTimer();
+
+        expect(
+          result,
+          Left<CacheFailure, bool>(
+            CacheFailure(message: 'Insufficient permission', statusCode: 403),
+          ),
+        );
+
+        verify(
+          () => localDataSource.checkIfUserIsFirstTimer(),
+        ).called(1);
+        verifyNoMoreInteractions(localDataSource);
+      },
+    );
+  });
 }

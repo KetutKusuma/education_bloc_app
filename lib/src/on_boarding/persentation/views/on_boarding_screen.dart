@@ -41,7 +41,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         image: MediaRes.onBoardingBackground,
         child: BlocConsumer<OnBoardingCubit, OnBoardingState>(
           listener: (context, state) {
-            if (state is OnBoardingStatus) {
+            if (state is OnBoardingStatus && !state.isFirstTimer) {
               Navigator.pushReplacementNamed(context, '/home');
             }
 
@@ -60,6 +60,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 children: [
                   PageView(
                     controller: pageController,
+                    children: listWidgetPage,
                   ),
                   Align(
                     alignment: const Alignment(0, .04),

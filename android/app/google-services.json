@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "750876768720",
+    "project_id": "education-bloc-app",
+    "storage_bucket": "education-bloc-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750876768720:android:26f875bd07e8782caa21d5",
+        "android_client_info": {
+          "package_name": "com.example.education_bloc_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhgCGuy5Ifk7eV4ySLrcjzKaNR4bOoWCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

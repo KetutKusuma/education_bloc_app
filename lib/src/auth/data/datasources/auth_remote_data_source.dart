@@ -19,3 +19,8 @@ abstract class AuthRemoteDataSource {
     required dynamic userData,
   });
 }
+
+// class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
+  // final FirebaseAuth _authClient;
+  // final
+// }

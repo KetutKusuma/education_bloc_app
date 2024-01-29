@@ -17,7 +17,10 @@ class SignIn extends UsecaseWithParams<LocalUser, SignInParams> {
 
   @override
   ResultFuture<LocalUser> call(SignInParams params) {
-    return _authRepo.signIn(email: params.email, password: params.password);
+    return _authRepo.signIn(
+      email: params.email,
+      password: params.password,
+    );
   }
 }
 

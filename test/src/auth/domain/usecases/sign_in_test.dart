@@ -27,8 +27,8 @@ void main() {
     () async {
       when(
         () => repo.signIn(
-          email: any(),
-          password: any(),
+          email: any(named: 'email'),
+          password: any(named: 'password'),
         ),
       ).thenAnswer(
         (invocation) async => const Right(tUser),
@@ -45,7 +45,14 @@ void main() {
         result,
         const Right<dynamic, LocalUser>(tUser),
       );
-      verify(() => usecase,)
+      verify(
+        () => usecase(
+          const SignInParams(email: tEmail, password: tPassword),
+        ),
+      ).called(1);
+
+      verifyNoMoreInteractions(repo);
     },
   );
+  // no negatif test ???
 }

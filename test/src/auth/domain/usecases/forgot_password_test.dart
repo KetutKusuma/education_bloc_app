@@ -1,8 +1,8 @@
-import 'package:education_bloc_app/src/auth/domain/entities/user.dart';
+import 'package:dartz/dartz.dart';
 import 'package:education_bloc_app/src/auth/domain/repos/auth_repo.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:test/test.dart';
 import 'package:education_bloc_app/src/auth/domain/usecases/forgot_password.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 
 import 'auth_repo.mock.dart';
 
@@ -10,22 +10,27 @@ void main() {
   late AuthRepo repo;
   late ForgotPassword usecase;
 
-  const tEmail = 'Test Email';
-  const tPassword = 'Test Password';
-
   setUp(() {
     repo = MockAuthRepo();
     usecase = ForgotPassword(repo);
   });
 
-  const tUser = LocalUser.empty();
+  const tPassword = 'Test password';
 
   test(
-    'should return [LocalUser] from the [AuthRepo]',
-    () {
+    'should call [AuthRepo]',
+    () async {
       when(
-        () => repo,
+        () => repo.forgotPassword(any()),
+      ).thenAnswer(
+        (invocation) async => const Right(null),
       );
+      final result = await usecase(tPassword);
+      expect(result, const Right<dynamic, void>(null));
+      verify(
+        () => usecase(tPassword),
+      ).called(1);
+      verifyNoMoreInteractions(repo);
     },
   );
 }

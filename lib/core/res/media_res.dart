@@ -66,8 +66,8 @@ class MediaRes {
   static const bluePotPlant = '$_baseVectors/blue_pot_plant.png';
   static const casualLife = '$_baseVectors/casual_life.png';
   static const casualMediationScience =
-      '$_baseVectors/casual_mediation_science.png';
-  static const casualMediation = '$_baseVectors/casual_mediation.png';
+      '$_baseVectors/casual_meditation_science.png';
+  static const casualMediation = '$_baseVectors/casual_meditation.png';
   static const casualReading = '$_baseVectors/casual_reading.png';
   static const microscopeVec = '$_baseVectors/microscope.png';
   static const steamCup = '$_baseVectors/steam_cup.png';

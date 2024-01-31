@@ -152,7 +152,6 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
           await _updateUserData({
             'email': userData,
           });
-        // break;
         case UpdateUserAction.displayName:
           await _authClient.currentUser!.updateDisplayName(userData as String);
           await _updateUserData({'displayName': userData});

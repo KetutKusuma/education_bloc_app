@@ -1,3 +1,4 @@
+import 'package:education_bloc_app/core/common/app/providers/user_provider.dart';
 import 'package:education_bloc_app/core/res/colours.dart';
 import 'package:education_bloc_app/core/res/fonts.dart';
 import 'package:education_bloc_app/core/services/injection_container.dart';
@@ -5,6 +6,7 @@ import 'package:education_bloc_app/core/services/router.dart';
 import 'package:education_bloc_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,18 +22,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          backgroundColor: Colors.white,
-          accentColor: Colours.primaryColour,
+    return ChangeNotifierProvider(
+      create: (_) => UserProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(
+            backgroundColor: Colors.white,
+            accentColor: Colours.primaryColour,
+          ),
+          useMaterial3: true,
+          fontFamily: Fonts.poppins,
         ),
-        useMaterial3: true,
-        fontFamily: Fonts.poppins,
+        onGenerateRoute: generateRoute,
       ),
-      onGenerateRoute: generateRoute,
     );
   }
 }

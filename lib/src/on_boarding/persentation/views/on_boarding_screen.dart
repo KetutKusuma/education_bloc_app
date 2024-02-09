@@ -28,7 +28,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<OnBoardingCubit>().checkIfUserIsFirstTimer();
   }
@@ -46,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             }
 
             if (state is UserCached) {
-              //TODO: (User cached handler) : push to apporociter screen
+              Navigator.pushReplacementNamed(context, '/');
             }
           },
           builder: (context, state) {

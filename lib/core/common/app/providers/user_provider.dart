@@ -1,5 +1,4 @@
 import 'package:education_bloc_app/src/auth/data/models/user_model.dart';
-import 'package:education_bloc_app/src/auth/domain/entities/user.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {

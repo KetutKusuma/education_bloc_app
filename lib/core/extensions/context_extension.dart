@@ -15,4 +15,6 @@ extension ContextExt on BuildContext {
   UserProvider get userProvider => read<UserProvider>();
 
   LocalUser? get currentUser => userProvider.user;
+
+  TextTheme get textThemeGet => theme.textTheme;
 }

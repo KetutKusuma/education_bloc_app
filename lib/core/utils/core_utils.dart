@@ -1,3 +1,4 @@
+import 'package:education_bloc_app/core/res/colours.dart';
 import 'package:flutter/material.dart';
 
 class CoreUtils {
@@ -15,6 +16,7 @@ class CoreUtils {
             borderRadius: BorderRadius.circular(10),
           ),
           margin: const EdgeInsets.all(10),
+          backgroundColor: Colours.primaryColour,
           content: Text(
             message,
             style: const TextStyle(

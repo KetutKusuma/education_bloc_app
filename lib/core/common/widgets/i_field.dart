@@ -38,7 +38,7 @@ class IField extends StatelessWidget {
               if (value == null || value.isEmpty) {
                 return 'This field is required';
               }
-              return '';
+              return null;
             },
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
       keyboardType: keyboardType,

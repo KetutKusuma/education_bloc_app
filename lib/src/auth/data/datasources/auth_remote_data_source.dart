@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -126,12 +127,15 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       await userCred.user!.updatePhotoURL(kDefaultAvatar);
       // set lagi user data
       await _setUserData(_authClient.currentUser!, email);
+      log('sukses signup ?');
     } on FirebaseException catch (e) {
+      log('masuk firebase excep : $e');
       throw ServerException(
         message: e.message ?? 'Error Occured',
         statusCode: e.code,
       );
     } catch (e, s) {
+      log('masuk exception catch : $e');
       debugPrintStack(stackTrace: s);
       throw ServerException(
         message: e.toString(),

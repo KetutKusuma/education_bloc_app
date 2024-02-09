@@ -13,13 +13,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder(
-      child: Center(
-        child: Text(
-          'Dashboard',
-          style: context.textThemeGet.bodyLarge,
-        ),
-      ),
+    return Scaffold(
+      body: Text('dashboard'),
     );
   }
 }

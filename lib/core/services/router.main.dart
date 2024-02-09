@@ -72,12 +72,26 @@ PageRouteBuilder<dynamic> _pageRouteBuilder(
   Widget Function(BuildContext) page, {
   required RouteSettings settings,
 }) {
+  // return PageRouteBuilder(
+  //   settings: settings,
+  //   transitionsBuilder: (_, animation, __, child) => FadeTransition(
+  //     opacity: animation,
+  //     child: child,
+  //   ),
+  //   pageBuilder: (context, _, __) => page(context),
+  // );
   return PageRouteBuilder(
-    settings: settings,
-    transitionsBuilder: (_, animation, __, child) => FadeTransition(
-      opacity: animation,
-      child: child,
-    ),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0, 1);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+      final tween =
+          Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
     pageBuilder: (context, _, __) => page(context),
   );
 }

@@ -125,10 +125,8 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           FocusManager.instance.primaryFocus!.unfocus();
                           FirebaseAuth.instance.currentUser?.reload();
-                          log('signin - 2');
 
                           if (formKey.currentState!.validate()) {
-                            log('signin');
                             context.read<AuthBloc>().add(
                                   SignInEvent(
                                     email: emailController.text.trim(),

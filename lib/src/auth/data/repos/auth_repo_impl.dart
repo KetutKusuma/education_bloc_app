@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:education_bloc_app/core/enums/update_user.dart';
 import 'package:education_bloc_app/core/errors/exception.dart';
@@ -28,15 +30,19 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  ResultFuture<LocalUser> signIn(
-      {required String email, required String password}) async {
+  ResultFuture<LocalUser> signIn({
+    required String email,
+    required String password,
+  }) async {
     try {
+      log("MASUK SIGN IN");
       final result = await _remoteDataSource.signIn(
         email: email,
         password: password,
       );
       return Right(result);
     } on ServerException catch (e) {
+      log("error : $e");
       return Left(
         ServerFailure(
           message: e.message,

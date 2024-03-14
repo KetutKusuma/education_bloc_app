@@ -210,6 +210,11 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
+    // return _cloudStoreClient
+    //     .collection('users')
+    //     .where('uhuy', isEqualTo: "20")
+    //     .where('yuhu', isNull: true)
+    //     .get();
     return _cloudStoreClient.collection('users').doc(uid).get();
   }
 
